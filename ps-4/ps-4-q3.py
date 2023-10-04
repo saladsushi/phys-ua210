@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-from scipy.special import hermitenorm, hermite
+from scipy.special import hermite, roots_hermite, factorial
 from scipy.integrate import quadrature
 
 #/ !!This is originally a slice of code from University of Michigan, because the 'gaussxw' module
@@ -73,19 +73,18 @@ s = sum(wp * integrand(xp, 5))
 print("Quantum uncertainty for n=5:", math.sqrt(s))
 
 #(d)
-def psi_h(n, x):
-    # Note: We're not multiplying by the Gaussian factor here as it's handled by Gauss-Hermite
-    return (1 / np.sqrt(2**n * math.factorial(n))) * hermite(n)(x)
+def psi(n, x):
+    normalization = 1 / np.sqrt(2**n * factorial(n) * np.sqrt(np.pi))
+    herm_poly = hermite(n)
+    return normalization * np.exp(-x**2 / 2) * herm_poly(x)
 
-def integrand_for_hermite(x, n):
-    # Return the function f(x) to be used in Gauss-Hermite
-    psi_val = psi_h(n, x)
-    return x**2 * psi_val**2 * np.exp(x**2)
+def integrand_gh(x, n):
+    return x**2 * abs(psi(n, x))**2 * np.exp(x**2)
 
-def uncertainty_gauss_hermite(n, N=100):
-    # Get Hermite nodes and weights from SciPy
-    x, w = np.polynomial.hermite.hermgauss(N)
-    integral_value = np.dot(w, integrand_for_hermite(x, n))
-    return integral_value
+def quantum_uncertainty(n):
+    x, w = roots_hermite(100)
+    integral = np.dot(integrand_gh(x, n), w)
+    return np.sqrt(integral)
 
+n = 5
 print("Quantum uncertainty for n=5:", quantum_uncertainty(n))
