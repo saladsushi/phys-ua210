@@ -35,7 +35,7 @@ B = diags(diagonals_B, [0, -1, 1], format="csc")
 v = B.dot(psi_0)
 
 psi_t_h = spsolve(A, v)
-psi_t_h[:5], psi_t_h.shape
+print(psi_t_h[:5], psi_t_h.shape)
 
 
 
@@ -61,7 +61,7 @@ plt.title('Real part of the wavefunction at different times')
 plt.xlabel('Position (m)')
 plt.ylabel('Real part of ψ')
 plt.legend()
-plt.grid(True)
+plt.savefig('Real part of the wavefunction at different times')
 plt.show()
 
 
