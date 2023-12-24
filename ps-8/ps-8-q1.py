@@ -34,7 +34,7 @@ axes[1, 1].set_title('Fourier Transform of Trumpet Waveform')
 axes[1, 1].set_xlabel('Frequency(Hz)')
 axes[1, 1].set_ylabel('Magnitude')
 
-plt.tight_layout()
+plt.savefig('Instrument Waveform and Their Fourier Transform')
 plt.show()
 
 # Part b

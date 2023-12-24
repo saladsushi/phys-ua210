@@ -26,6 +26,7 @@ plt.title('Lorenz System')
 plt.xlabel('Time')
 plt.ylabel('y')
 plt.legend()
+plt.savefig('Lorenz System')
 plt.show()
 
 # Part b
@@ -35,4 +36,5 @@ plt.title('Lorenz Attractor')
 plt.xlabel('x')
 plt.ylabel('z')
 plt.legend()
+plt.savefig('Lorenz Attractor')
 plt.show()
