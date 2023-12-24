@@ -21,6 +21,7 @@ plt.ylabel('Integrand Value')
 plt.title('Integrand of the Gamma Function for Various a')
 plt.legend()
 plt.grid(True)
+plt.savefig('Integrand of the Gamma Function for Various a')
 plt.show()
 
 # Part b
